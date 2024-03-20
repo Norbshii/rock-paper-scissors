@@ -134,10 +134,10 @@ def app():
 
     # Dense layers
     classifier.add(layers.Dense(units=128, activation="relu"))
-    classifier.add(layers.Dense(units=1, activation=o_activation))
+    classifier.add(layers.Dense(units=3, activation=o_activation))
 
     # Compile the model
-    classifier.compile(optimizer=optimizer, loss="binary_crossentropy", metrics=["accuracy"])
+    classifier.compile(optimizer=optimizer, loss="categorical_crossentropy", metrics=["accuracy"])
 
     st.session_state.classifier = classifier
 
