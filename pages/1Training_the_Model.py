@@ -199,7 +199,25 @@ def app():
             validation_steps=10,
             callbacks=[CustomCallback()]
         )
+
+        # Assuming you have already evaluated the model using:
+        test_loss, test_accuracy = model.evaluate(test_set)
         
+        # Create a figure and an axes object
+        fig, ax = plt.subplots(figsize=(8, 5))  # Adjust figure size as needed
+
+        # Plot the loss and accuracy on the axes object
+        ax.plot(test_loss, label='Test Loss')
+        ax.plot(test_accuracy, label='Test Accuracy')  # Assuming accuracy is a single value
+
+        # Customize the plot using the axes object
+        ax.set_title('Model Loss and Accuracy')
+        ax.set_xlabel('Epochs')  # Replace with a suitable label if epochs aren't used
+        ax.set_ylabel('Metrics')
+        ax.legend()
+        ax.grid(True)
+        # Show the completed plot
+        st.pyplot(fig)
         # update the progress bar
         for i in range(100):
             # Update progress bar value
