@@ -24,7 +24,7 @@ def app():
     if "test_set" not in st.session_state:
         st.session_state.test_set = []
     if "training_history" not in st.session_state:
-        st.session_state.training_history = []
+        st.session_state.training_history = {}
 
     with st.expander("Click to display more info"):
         text = """
