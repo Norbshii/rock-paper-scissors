@@ -200,8 +200,13 @@ def app():
             callbacks=[CustomCallback()]
         )
 
-        # Assuming you have already evaluated the model using:
+        training_history = []  # List to store training data
         test_loss, test_accuracy = classifier.evaluate(test_set)
+        training_history.append({'epoch': None, 'test_loss': test_loss, 'test_accuracy': test_accuracy})
+
+        # Example usage after multiple evaluations:
+        for epoch_data in training_history:
+            st.write(f"Epoch: {epoch_data.get('epoch', 'Test')}, Test Loss: {epoch_data['test_loss']:.4f}, Test Accuracy: {epoch_data['test_accuracy']:.2%}")
         
         # Create a figure and an axes object
         fig, ax = plt.subplots(figsize=(8, 5))  # Adjust figure size as needed
