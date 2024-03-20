@@ -201,7 +201,7 @@ def app():
         )
 
         # Assuming you have already evaluated the model using:
-        test_loss, test_accuracy = model.evaluate(test_set)
+        test_loss, test_accuracy = classifier.evaluate(test_set)
         
         # Create a figure and an axes object
         fig, ax = plt.subplots(figsize=(8, 5))  # Adjust figure size as needed
