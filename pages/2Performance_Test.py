@@ -30,11 +30,14 @@ def present_image(imagefile):
     training_set.class_indices
 
     if result[0][0]==0:
-        prediction = 'cat'
-    else:
-        prediction = 'dog'
+        prediction = 'paper'
+    if result[0][0]==1:
+        prediction = 'rock'
 
-    st.subheader('CNN says the image is of a ' + prediction)
+    else:
+        prediction = 'scissors'
+
+    st.subheader('CNN says the image is ' + prediction)
  
 
 
