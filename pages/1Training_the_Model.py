@@ -206,6 +206,7 @@ def app():
 
         # Example usage after multiple evaluations:
         for epoch_data in training_history:
+            st.write('Entry')
             st.write(f"Epoch: {epoch_data.get('epoch', 'Test')}, Test Loss: {epoch_data['test_loss']:.4f}, Test Accuracy: {epoch_data['test_accuracy']:.2%}")
         
         # Create a figure and an axes object
