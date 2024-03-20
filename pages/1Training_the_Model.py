@@ -60,15 +60,15 @@ def app():
     # Data preparation
     training_set = train_datagen.flow_from_directory(
         "dataset/training_set",
-        target_size=(64, 64),
+        target_size=(300, 200),
         batch_size=32,
-        class_mode="binary",
+        class_mode="categorical",
     )
     test_set = test_datagen.flow_from_directory(
         "dataset/test_set",
-        target_size=(64, 64),
+        target_size=(300, 200),
         batch_size=32,
-        class_mode="binary",
+        class_mode="categorical",
     )
 
     st.session_state.training_set = training_set
@@ -84,7 +84,7 @@ def app():
     st.success("Image dataset loading completed!") 
 
     st.subheader("Sample Training Images")
-    st.write("The following are 25 sample images randomly selected from both cats and dogs image dataset.")
+    st.write("The following are 25 sample images randomly selected from dataset.")
     # Get the data for the first 25 images in training set
     train_data = next(training_set)
     train_images, train_labels = train_data[0][0:25], train_data[1][0:25]  # Get first 25 images and labels
@@ -124,7 +124,7 @@ def app():
     classifier = keras.Sequential()
 
     # Convolutional layer
-    classifier.add(layers.Conv2D(n_layers, (3, 3), activation=h_activation, input_shape=(64, 64, 3)))  # Add input shape for RGB images
+    classifier.add(layers.Conv2D(n_layers, (3, 3), activation=h_activation, input_shape=(300, 200, 3)))  # Add input shape for RGB images
 
     # Max pooling layer
     classifier.add(layers.MaxPooling2D(pool_size=(2, 2)))
@@ -208,7 +208,7 @@ def app():
             time.sleep(0.01)
         # Progress bar reaches 100% after the loop completes
         st.success("Model training completed!") 
-        st.write("The model is now trained to tell dogs and cats apart. Use the sidebar to open the Performance Testing page.")
+        st.write("The model is now trained on the images. Use the sidebar to open the Performance Testing page.")
 
 # Define a function to plot images
 def plot_images(images, labels):
