@@ -202,11 +202,7 @@ def app():
             callbacks=[CustomCallback()]
         )
 
-        test_loss, test_accuracy = classifier.evaluate(test_set)
-
-        # Example usage after multiple evaluations:
-        for epoch_data in st.session_state.training_history:
-            st.write(f"Epoch: {epoch_data.get('epoch', 'Test')}, Test Loss: {epoch_data['loss']:.4f}, Test Accuracy: {epoch_data['accuracy']:.2%}")
+        st.write(st.session_state.training_history)
         
         # Create a figure and an axes object
         fig, ax = plt.subplots(figsize=(8, 5))  # Adjust figure size as needed
