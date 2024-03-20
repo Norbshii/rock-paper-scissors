@@ -192,6 +192,9 @@ def app():
         training_set = st.session_state.training_set
         test_set = st.session_state.test_set
 
+        # clear the history
+        st.session_state.train_history = {}
+
         # Train the model
         classifier.fit(
             training_set,
@@ -203,23 +206,8 @@ def app():
         )
 
         st.write(st.session_state.training_history)
-        
-        # Create a figure and an axes object
-        fig, ax = plt.subplots(figsize=(8, 5))  # Adjust figure size as needed
-
-        # Plot the loss and accuracy on the axes object
-        ax.plot(test_loss, label='Test Loss')
-        ax.plot(test_accuracy, label='Test Accuracy')  # Assuming accuracy is a single value
-
-        # Customize the plot using the axes object
-        ax.set_title('Model Loss and Accuracy')
-        ax.set_xlabel('Epochs')  # Replace with a suitable label if epochs aren't used
-        ax.set_ylabel('Metrics')
-        ax.legend()
-        ax.grid(True)
-        # Show the completed plot
-        st.pyplot(fig)
-        # update the progress bar
+ 
+         # update the progress bar
         for i in range(100):
             # Update progress bar value
             progress_bar.progress(i + 1)
