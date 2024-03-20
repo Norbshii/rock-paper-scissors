@@ -43,17 +43,18 @@ def app():
     West Visayas State University"""
     st.text(text)
 
-    st.image('cat_or_dog.jpg', caption='Cat or Dog Image Classification')
+    st.image('rock-paper-scissor.png', caption='Rock Paper Scissor')
 
     text = """
-This Streamlit app demonstrates a binary image classifier for cats and dogs 
-using a Convolutional Neural Network (CNN). The CNN is trained on a balanced 
-dataset of 4,000 images, containing 2,000 cat and 2,000 dog images. The app leverages 
-Streamlit's capabilities to create a user-friendly interface for image 
-uploading and classification. Upon uploading an image, the app pre-processes it 
-(resizing, normalization) and feeds it through the trained CNN model. 
-The model's output is then interpreted to predict whether the image contains 
-a cat or a dog.
+    This Streamlit app demonstrates a Convolutional Neural Network (CNN) for 
+    rock-paper-scissors hand gesture classification, built using TensorFlow 
+    Keras. It allows users to upload an image and see the model's prediction 
+    for the hand sign (rock, paper, or scissors). Under the hood, the app 
+    loads a pre-trained CNN model, preprocesses the uploaded image for the 
+    model's input format, performs inference to generate class probabilities, 
+    and displays the predicted class along with a confidence score. 
+    This interactive environment provides computer science students with a 
+    practical example of applying deep learning for image recognition tasks.
     """
     st.write(text)
 
