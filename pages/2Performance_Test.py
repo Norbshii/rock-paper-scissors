@@ -23,7 +23,7 @@ def present_image(imagefile):
     classifier = st.session_state.classifier
     training_set = st.session_state.training_set
     st.image(imagefile, caption='Uploaded test image')
-    test_image = image.load_img(imagefile, target_size=(300, 200))
+    test_image = image.load_img(imagefile, target_size=(200, 300))
     test_image = image.img_to_array(test_image)
     test_image = np.expand_dims(test_image, axis=0)
     result = classifier.predict(test_image)
