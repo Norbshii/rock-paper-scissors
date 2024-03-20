@@ -113,10 +113,10 @@ def app():
 
     epochs = st.sidebar.slider(   
         label="Set the number epochs:",
-        min_value=20,
-        max_value=200,
-        value=50,
-        step=5
+        min_value=5,
+        max_value=15,
+        value=5,
+        step=1
     )
 
 
@@ -133,7 +133,7 @@ def app():
     classifier.add(layers.Flatten())
 
     # Dense layers
-    classifier.add(layers.Dense(units=128, activation="relu"))
+    classifier.add(layers.Dense(units=128, activation=h_activation))
     classifier.add(layers.Dense(units=3, activation=o_activation))
 
     # Compile the model
@@ -186,7 +186,7 @@ def app():
  
         progress_bar = st.progress(0, text="Training the model please wait...")
         # Train the model
-        batch_size = 64
+        batch_size = 32
         training_set = st.session_state.training_set
         test_set = st.session_state.test_set
 
