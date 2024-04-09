@@ -123,19 +123,21 @@ def app():
 
     # Create the Sequential model
     classifier = keras.Sequential()
+    classifier.add(layers.Input(shape=[300, 300, 3]))  # Input layer with image dimensions
 
-    # Add layers to the model
-    classifier.add(layers.Input(shape=[300, 300, 3]))
+    # Convolutional layers with appropriate calculation for final shape
     classifier.add(layers.Conv2D(n_neurons, (3, 3), activation=h_activation))
-    classifier.add(layers.MaxPooling2D(pool_size=(2, 2)))
-    classifier.add(layers.Conv2D(n_neurons, (3, 3), activation=h_activation))
-    classifier.add(layers.MaxPooling2D(pool_size=(2, 2)))
-    classifier.add(layers.Conv2D(n_neurons, (3, 3), activation=h_activation))
-    classifier.add(layers.MaxPooling2D(pool_size=(2, 2)))
-    classifier.add(layers.Conv2D(n_neurons, (3, 3), activation=h_activation))
-    classifier.add(layers.MaxPooling2D(pool_size=(2, 2)))
+    # New line to calculate the output shape after Conv2D
+    output_shape = ((300 - 3 + 1) // 2) * ((300 - 3 + 1) // 2) * n_neurons
+
+    # Adjust pooling size based on the calculated output shape
+    classifier.add(layers.MaxPooling2D(pool_size=(output_shape // n_neurons, output_shape // n_neurons)))
+
+    # Flatten layer
     classifier.add(layers.Flatten())
-    classifier.add(layers.Dense(units=128, activation=h_activation))
+
+    # Dense layers with compatible shape
+    classifier.add(layers.Dense(units=output_shape, activation=h_activation))  # Units adjusted
     classifier.add(layers.Dense(units=3, activation=o_activation))
 
     # Compile the model
