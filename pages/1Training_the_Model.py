@@ -9,6 +9,8 @@ import matplotlib.pyplot as plt
 from tensorflow import keras
 from tensorflow.keras import layers
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
+import contextlib
+import io  # Import the io module
 
 import time
 
@@ -96,7 +98,7 @@ def app():
     
    # Define CNN parameters    
     st.sidebar.subheader('Set the CNN Parameters')
-    options = ["relu", "leakyrelu", "tanh", "elu", "selu"]
+    options = ["relu", "leaky_relu", "tanh", "elu", "selu"]
     c_activation = st.sidebar.selectbox('Activation function for the hidden layer:', options)
 
     options = ["softmax", "sigmoid"]
@@ -147,6 +149,16 @@ def app():
 
     st.session_state.classifier = classifier
 
+
+    # Capture the summary output
+    st.write("Model summary details:")
+    with contextlib.redirect_stdout(io.StringIO()) as new_stdout:            
+        classifier.summary()
+        summary_str = new_stdout.getvalue()
+    # Display the summary using st.text()
+    st.text(summary_str)
+    
+
     with st.expander("Click here to display the guide on how to select the parameters"):
         text = """ReLU (Rectified Linear Unit): This is the most common activation function used 
         in convolutional neural networks (CNNs) for hidden layers. It outputs the input 
@@ -195,7 +207,6 @@ def app():
         batch_size = 32
         training_set = st.session_state.training_set
         test_set = st.session_state.test_set
-
 
         # Train the model
         history  = classifier.fit(
