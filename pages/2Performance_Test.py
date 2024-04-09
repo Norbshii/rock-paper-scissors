@@ -41,7 +41,7 @@ def present_image(imagefile):
     test_image = np.expand_dims(test_image, axis=0)
     result = classifier.predict(test_image)
     st.write(f'result = {result}')
-    #training_set.class_indices
+    training_set.class_indices
     prediction = decode_one_hot(result)
 
     st.subheader('CNN says the image is ' + prediction)
