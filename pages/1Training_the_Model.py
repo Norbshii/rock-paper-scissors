@@ -123,22 +123,24 @@ def app():
 
     # Create the Sequential model
     classifier = keras.Sequential()
-    classifier.add(layers.Input(shape=[300, 300, 3]))  # Input layer with image dimensions
 
-    # Convolutional layers with appropriate calculation for final shape
-    classifier.add(layers.Conv2D(n_neurons, (3, 3), activation=h_activation))
-    # New line to calculate the output shape after Conv2D
-    output_shape = ((300 - 3 + 1) // 2) * ((300 - 3 + 1) // 2) * n_neurons
+    # First convolutional block
+    classifier.add(keras.layers.Conv2D(32, (3, 3), activation='relu', input_shape=(300, 300, 3)))
+    classifier.add(keras.layers.MaxPooling2D(pool_size=(2, 2)))
 
-    # Adjust pooling size based on the calculated output shape
-    classifier.add(layers.MaxPooling2D(pool_size=(2, 2)))  # Adjust pool size to a valid value
+    # Second convolutional block
+    classifier.add(keras.layers.Conv2D(64, (3, 3), activation='relu'))
+    classifier.add(keras.layers.MaxPooling2D(pool_size=(2, 2)))
 
-    # Flatten layer
-    classifier.add(layers.Flatten())
+    # Flatten the output before feeding to fully connected layers
+    classifier.add(keras.layers.Flatten())
 
-    # Dense layers with compatible shape
-    classifier.add(layers.Dense(units=output_shape, activation=h_activation))  # Units adjusted
-    classifier.add(layers.Dense(units=3, activation=o_activation))
+    # Fully connected layers
+    classifier.add(keras.layers.Dense(64, activation='relu'))
+    classifier.add(keras.layers.Dropout(0.2))  # Add dropout for regularization
+
+    # Output layer with softmax activation for 3 classes
+    classifier.add(keras.layers.Dense(3, activation='softmax'))
 
     # Compile the model
     classifier.compile(optimizer=optimizer, loss="categorical_crossentropy", metrics=["accuracy"])
