@@ -27,6 +27,7 @@ def present_image(imagefile):
     test_image = image.img_to_array(test_image)
     test_image = np.expand_dims(test_image, axis=0)
     result = classifier.predict(test_image)
+    st.write(f'result = {result}')
     training_set.class_indices
 
     if result[0][0]==0:
