@@ -143,7 +143,7 @@ def app():
 
     st.session_state.classifier = classifier
 
-    with st.expander("CLick to display guide on how to select parameters"):
+    with st.expander("Click here to display the guide on how to select the parameters"):
         text = """ReLU (Rectified Linear Unit): This is the most common activation function used 
         in convolutional neural networks (CNNs) for hidden layers. It outputs the input 
         directly if it's positive (f(x) = x for x >= 0) and sets negative inputs to zero 
