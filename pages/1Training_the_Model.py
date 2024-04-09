@@ -26,10 +26,10 @@ def app():
     if "training_history" not in st.session_state:
         st.session_state.training_history = []
 
-    with st.expander("Click to display more info"):
+    with st.expander("Click here to display more info"):
         text = """
-        \n# --- Available activation functions for hidden layers ---
-        ReLU (Rectified Linear Unit): Most common default
+        \n## --- Available activation functions for hidden layers --- ##
+        \nReLU (Rectified Linear Unit): Most common default
         LeakyReLU: Variant of ReLU to address "dying ReLU" issue
         tanh (Hyperbolic Tangent): Squash values between -1 and 1
         ELU (Exponential Linear Unit): Similar to ReLU, but smoother
