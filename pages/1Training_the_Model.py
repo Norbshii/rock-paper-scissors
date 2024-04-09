@@ -28,7 +28,7 @@ def app():
 
     with st.expander("Click here to display more info"):
         text = """
-        \n## --- Available activation functions for hidden layers --- ##
+        \n## Available activation functions for hidden layers ##
         \nReLU (Rectified Linear Unit): Most common default
         LeakyReLU: Variant of ReLU to address "dying ReLU" issue
         tanh (Hyperbolic Tangent): Squash values between -1 and 1
