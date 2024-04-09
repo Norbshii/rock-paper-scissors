@@ -105,7 +105,7 @@ def app():
     options = ["adam", "adagrad", "sgd"]
     optimizer = st.sidebar.selectbox('Select the optimizer:', options)
 
-    n_layers = st.sidebar.slider(      
+    n_neurons = st.sidebar.slider(      
         label="Number of Neurons in the Convolutional Layer:",
         min_value=16,
         max_value=128,
@@ -124,11 +124,8 @@ def app():
 
     # Initialize the CNN
     classifier = keras.Sequential()
-
-    # Convolutional layer
-    classifier.add(layers.Conv2D(n_layers, (3, 3), activation=h_activation, input_shape=(200, 300, 3)))  # Add input shape for RGB images
-
-    # Max pooling layer
+    classifier.add(layers.Input(shape=[300, 300, 3]))
+    classifier.add(layers.Conv2D(n_neurons, (3, 3), activation=h_activation))  
     classifier.add(layers.MaxPooling2D(pool_size=(2, 2)))
 
     # Flatten layer
