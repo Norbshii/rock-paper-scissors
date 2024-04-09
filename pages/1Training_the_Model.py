@@ -200,7 +200,7 @@ def app():
         make informed choices to optimize your CNN for the task at hand."""
         st.write(text)
 
-    if st.button('Start Training'):
+    if st.sidebar.button('Start Training'):
  
         progress_bar = st.progress(0, text="Training the model please wait...")
         # Train the model
