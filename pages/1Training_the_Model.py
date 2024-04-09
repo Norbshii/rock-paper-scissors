@@ -121,11 +121,14 @@ def app():
         step=1
     )
 
-
-    # Initialize the CNN
+    # Create the Sequential model
     classifier = keras.Sequential()
+
+    # Add layers to the model
     classifier.add(layers.Input(shape=[300, 300, 3]))
-    classifier.add(layers.Conv2D(n_neurons, (3, 3), activation=h_activation))  
+    classifier.add(layers.Conv2D(n_neurons, (3, 3), activation=h_activation))
+    classifier.add(layers.MaxPooling2D(pool_size=(2, 2)))
+    classifier.add(layers.Conv2D(n_neurons, (3, 3), activation=h_activation))
     classifier.add(layers.MaxPooling2D(pool_size=(2, 2)))
     classifier.add(layers.Flatten())
     classifier.add(layers.Dense(units=128, activation=h_activation))
