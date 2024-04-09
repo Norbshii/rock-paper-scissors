@@ -131,7 +131,7 @@ def app():
     output_shape = ((300 - 3 + 1) // 2) * ((300 - 3 + 1) // 2) * n_neurons
 
     # Adjust pooling size based on the calculated output shape
-    classifier.add(layers.MaxPooling2D(pool_size=(output_shape // n_neurons, output_shape // n_neurons)))
+    classifier.add(layers.MaxPooling2D(pool_size=(2, 2)))  # Adjust pool size to a valid value
 
     # Flatten layer
     classifier.add(layers.Flatten())
