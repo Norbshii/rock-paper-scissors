@@ -125,7 +125,7 @@ def app():
     classifier = keras.Sequential()
 
     # First convolutional block
-    classifier.add(keras.layers.Conv2D(32, (3, 3), activation='relu', input_shape=(300, 300, 3)))
+    classifier.add(keras.layers.Conv2D(32, (3, 3), activation='relu', input_shape=(200, 300, 3)))
     classifier.add(keras.layers.MaxPooling2D(pool_size=(2, 2)))
 
     # Second convolutional block
