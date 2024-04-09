@@ -19,6 +19,19 @@ def app():
     if uploaded_file is not None:
         present_image(uploaded_file)
 
+def decode_one_hot(result):
+  """Decodes a one-hot encoded vector to its class label.
+
+  Args:
+    result: A numpy array representing a one-hot encoded vector.
+
+  Returns:
+    A string representing the class label. ("rock", "paper", or "scissors")
+  """
+  index = np.argmax(result)
+  classes = {0: "paper", 1: "rock", 2: "scissors"}
+  return classes[index]
+
 def present_image(imagefile):
     classifier = st.session_state.classifier
     training_set = st.session_state.training_set
@@ -28,15 +41,8 @@ def present_image(imagefile):
     test_image = np.expand_dims(test_image, axis=0)
     result = classifier.predict(test_image)
     st.write(f'result = {result}')
-    training_set.class_indices
-
-    if result[0][0]==0:
-        prediction = 'paper'
-    if result[0][0]==1:
-        prediction = 'rock'
-
-    else:
-        prediction = 'scissors'
+    #training_set.class_indices
+    prediction = decode_one_hot(result)
 
     st.subheader('CNN says the image is ' + prediction)
  
