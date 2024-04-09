@@ -97,9 +97,9 @@ def app():
    # Define CNN parameters    
     st.sidebar.subheader('Set the CNN Parameters')
     options = ["relu", "leakyrelu", "tanh", "elu", "selu"]
-    h_activation = st.sidebar.selectbox('Activation function for the hidden layer:', options)
+    c_activation = st.sidebar.selectbox('Activation function for the hidden layer:', options)
 
-    options = ["sigmoid", "softmax"]
+    options = ["softmax", "sigmoid"]
     o_activation = st.sidebar.selectbox('Activation function for the output layer:', options)
 
     options = ["adam", "adagrad", "sgd"]
@@ -116,31 +116,31 @@ def app():
     epochs = st.sidebar.slider(   
         label="Set the number epochs:",
         min_value=5,
-        max_value=15,
+        max_value=30,
         value=5,
-        step=1
+        step=5
     )
 
     # Create the Sequential model
     classifier = keras.Sequential()
 
     # First convolutional block
-    classifier.add(keras.layers.Conv2D(32, (3, 3), activation='relu', input_shape=(200, 300, 3)))
+    classifier.add(keras.layers.Conv2D(32, (3, 3), activation=c_activation, input_shape=(200, 300, 3)))
     classifier.add(keras.layers.MaxPooling2D(pool_size=(2, 2)))
 
     # Second convolutional block
-    classifier.add(keras.layers.Conv2D(64, (3, 3), activation='relu'))
+    classifier.add(keras.layers.Conv2D(n_neurons, (3, 3), activation=c_activation))
     classifier.add(keras.layers.MaxPooling2D(pool_size=(2, 2)))
 
     # Flatten the output before feeding to fully connected layers
     classifier.add(keras.layers.Flatten())
 
     # Fully connected layers
-    classifier.add(keras.layers.Dense(64, activation='relu'))
+    classifier.add(keras.layers.Dense(n_neurons, activation=c_activation))
     classifier.add(keras.layers.Dropout(0.2))  # Add dropout for regularization
 
     # Output layer with softmax activation for 3 classes
-    classifier.add(keras.layers.Dense(3, activation='softmax'))
+    classifier.add(keras.layers.Dense(3, activation=o_activation))
 
     # Compile the model
     classifier.compile(optimizer=optimizer, loss="categorical_crossentropy", metrics=["accuracy"])
