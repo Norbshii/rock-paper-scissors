@@ -127,11 +127,7 @@ def app():
     classifier.add(layers.Input(shape=[300, 300, 3]))
     classifier.add(layers.Conv2D(n_neurons, (3, 3), activation=h_activation))  
     classifier.add(layers.MaxPooling2D(pool_size=(2, 2)))
-
-    # Flatten layer
     classifier.add(layers.Flatten())
-
-    # Dense layers
     classifier.add(layers.Dense(units=128, activation=h_activation))
     classifier.add(layers.Dense(units=3, activation=o_activation))
 
