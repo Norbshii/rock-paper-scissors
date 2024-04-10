@@ -200,7 +200,7 @@ def app():
         make informed choices to optimize your CNN for the task at hand."""
         st.write(text)
 
-        st.write("CLick the Start Training button in the sidebar to train the model.")
+    st.write("CLick the Start Training button in the sidebar to train the model.")
 
     if st.sidebar.button('Start Training'):
  

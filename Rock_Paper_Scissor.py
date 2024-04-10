@@ -33,12 +33,12 @@ def app():
     if "n_clusters" not in st.session_state:
         st.session_state.n_clusters = 4
 
-    text = """Convolutional Neural Network Image Classifier"""
+    text = """Convolutional Neural Network Multi-class Image Classification"""
     st.subheader(text)
 
-    text = """Louie F. Cervantes, M. Eng. (Information Engineering) \n
+    text = """Prof. Louie F. Cervantes, M. Eng. (Information Engineering) \n
     CCS 229 - Intelligent Systems
-    Computer Science Department
+    Department of Computer Science
     College of Information and Communications Technology
     West Visayas State University"""
     st.text(text)
@@ -48,13 +48,13 @@ def app():
     text = """
     This Streamlit app demonstrates a Convolutional Neural Network (CNN) for 
     rock-paper-scissors hand gesture classification, built using TensorFlow 
-    Keras. It allows users to upload an image and see the model's prediction 
+    Keras. It allows users to upload an image dataset and to see the trained model's prediction 
     for the hand sign (rock, paper, or scissors). Under the hood, the app 
     loads a pre-trained CNN model, preprocesses the uploaded image for the 
     model's input format, performs inference to generate class probabilities, 
-    and displays the predicted class along with a confidence score. 
-    This interactive environment provides computer science students with a 
-    practical example of applying deep learning for image recognition tasks.
+    and displays the predicted class. This interactive environment provides computer 
+    science students with a practical example of applying deep learning for image 
+    classification tasks.
     """
     st.write(text)
 
@@ -62,7 +62,7 @@ def app():
          text = """Step 1. Go to Training page. Set the parameters of the CNN. Click the button to begin training.
          \nStep 2.  Go to Performance Testing page and click the button to load the image
          and get the model's output on the classification task.
-         \nYou can return to the training page to try other combinations of parameters."""
+         \nYou can usw the training page to try other combinations of parameters."""
          st.write(text)
     
 #run the app
